@@ -1,7 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import { ConnectOptions } from 'mongoose';
-// import userRouter from './routes/userRoutes';
+ import userRouter from './routers/userRouter';
 // import postRouter from "./routes/postRoutes"
 import dotenv from 'dotenv'
 
@@ -17,7 +17,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use(express.json());
 
 
-// app.use('/api/v1', userRouter,postRouter);
+ app.use('/api/v1', userRouter);
 
 
 const mongodb = 'mongodb+srv://agbakwuruoluchi29:XjrsTUWxbFVSGNJ0@cluster0.tffuwpj.mongodb.net/BookStore';
