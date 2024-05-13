@@ -113,10 +113,17 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
 };
 
 
-  export const getAllUsers = async (): Promise<IUser[]> => {
+  export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
       try {
-          const allUsers: IUser[] = await User.find();
-          return allUsers;
+          const allUsers = await User.find();
+
+          if(!allUsers){
+            res.status(404).json('users not found')
+            return;
+          }
+
+          res.status(200).json(allUsers);
+          
       } catch (error) {
           console.error('Error retrieving all users:', error);
           throw new Error('Failed to retrieve all users');
